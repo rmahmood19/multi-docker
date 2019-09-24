@@ -2,11 +2,11 @@ language: generic
 sudo: required
 services:
  - docker
-before_build:
-  - docker build -t reazm/react-test -f ./client/Dockerfile.dev ./client
+before_install:
+ - docker build -t reazm/react-test -f ./client/Dockerfile.dev ./client
 
 script: 
-  - docker run -e CI=true reazm/react-test npm test
+ - docker run -e CI=true reazm/react-test npm test
 
 after_success:
  - docker build -t reazm/multi-client ./client
